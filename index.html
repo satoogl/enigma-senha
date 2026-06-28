@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enigma</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    overflow:hidden;
+}
+
+h1{
+    color:white;
+    text-align:center;
+}
+
+input{
+    padding:12px;
+    font-size:20px;
+    border:none;
+    border-radius:10px;
+    text-align:center;
+    width:180px;
+}
+
+button{
+    margin-top:15px;
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#mensagem{
+    margin-top:20px;
+    font-size:22px;
+    color:white;
+    font-weight:bold;
+}
+
+.confete{
+    position:fixed;
+    width:10px;
+    height:10px;
+    top:-20px;
+    animation:cair linear forwards;
+}
+
+@keyframes cair{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+</style>
+</head>
+<body>
+
+<h1>Digite a senha para avançar ❤️</h1>
+
+<input id="senha" type="text" maxlength="6">
+
+<button onclick="verificar()">Confirmar</button>
+
+<div id="mensagem"></div>
+
+<script>
+
+function criarConfetes(){
+
+    const cores = [
+        "#ff0000",
+        "#00ff00",
+        "#0000ff",
+        "#ffff00",
+        "#ff00ff",
+        "#00ffff",
+        "#ffffff"
+    ];
+
+    for(let i=0;i<200;i++){
+
+        const confete=document.createElement("div");
+        confete.classList.add("confete");
+
+        confete.style.left=Math.random()*100+"vw";
+        confete.style.background=
+            cores[Math.floor(Math.random()*cores.length)];
+
+        confete.style.animationDuration=
+            (Math.random()*3+2)+"s";
+
+        document.body.appendChild(confete);
+
+        setTimeout(()=>{
+            confete.remove();
+        },5000);
+    }
+}
+
+function verificar(){
+
+    const senha =
+    document.getElementById("senha").value.trim();
+
+    if(senha==="250425"){
+
+        document.getElementById("mensagem").innerHTML =
+        "🎉 Parabéns! Você acertou! 🎉 volte para o canva.";
+
+        criarConfetes();
+
+        setTimeout(()=>{
+            window.location.href="fase2.html";
+        },3000);
+
+    }else{
+
+        document.getElementById("mensagem").innerHTML =
+        "❌ Senha incorreta!";
+    }
+}
+</script>
+
+</body>
+</html>
