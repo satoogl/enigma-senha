@@ -103,17 +103,20 @@ function verificar(){
 
         criarConfetes();
 
-        // BOTÃO QUE FUNCIONA NO CANVA
         setTimeout(()=>{
-            document.getElementById("mensagem").innerHTML+=`
-            <br><br>
-            <a href="https://canva.link/182ancuv7t2ri7d" target="_blank">
-                <button>
-                    Ir para próxima fase ❤️
-                </button>
-            </a>
-            `;
-        },1200);
+            try{
+                // TENTA SAIR DO CANVA (o que funciona quando permitido)
+                window.top.location.href =
+                "https://canva.link/182ancuv7t2ri7d";
+            } catch(e){
+                // fallback se bloquear
+                document.getElementById("mensagem").innerHTML +=
+                `<br><br>
+                <a href="https://canva.link/182ancuv7t2ri7d" target="_blank">
+                    <button>Ir para próxima fase ❤️</button>
+                </a>`;
+            }
+        },1500);
 
     } else {
         document.getElementById("mensagem").innerHTML=
