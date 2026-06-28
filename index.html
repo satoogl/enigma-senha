@@ -13,15 +13,12 @@ body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    font-family:Arial,sans-serif;
+    font-family:Arial;
     background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-    overflow:hidden;
     text-align:center;
 }
 
-h1{
-    color:white;
-}
+h1{ color:white; }
 
 input{
     padding:12px;
@@ -29,7 +26,6 @@ input{
     border:none;
     border-radius:10px;
     text-align:center;
-    width:200px;
 }
 
 button{
@@ -66,9 +62,9 @@ button{
 
 <body>
 
-<h1>Digite a senha para avançar ❤️</h1>
+<h1>Digite a senha ❤️</h1>
 
-<input id="senha" type="text" maxlength="6">
+<input id="senha" maxlength="6">
 <button onclick="verificar()">Confirmar</button>
 
 <div id="mensagem"></div>
@@ -76,53 +72,49 @@ button{
 <script>
 
 function criarConfetes(){
-    const cores = ["#ff0000","#00ff00","#0000ff","#ffff00","#ff00ff","#00ffff","#ffffff"];
+    const cores=["#ff0000","#00ff00","#0000ff","#ffff00","#ff00ff","#00ffff","#ffffff"];
 
-    for(let i=0;i<200;i++){
-        const confete=document.createElement("div");
-        confete.classList.add("confete");
+    for(let i=0;i<150;i++){
+        const c=document.createElement("div");
+        c.classList.add("confete");
+        c.style.left=Math.random()*100+"vw";
+        c.style.background=cores[Math.floor(Math.random()*cores.length)];
+        c.style.animationDuration=(Math.random()*3+2)+"s";
+        document.body.appendChild(c);
 
-        confete.style.left=Math.random()*100+"vw";
-        confete.style.background=
-            cores[Math.floor(Math.random()*cores.length)];
-
-        confete.style.animationDuration=
-            (Math.random()*3+2)+"s";
-
-        document.body.appendChild(confete);
-
-        setTimeout(()=>{
-            confete.remove();
-        },5000);
+        setTimeout(()=>c.remove(),5000);
     }
 }
 
 function verificar(){
 
-    const senha =
-    document.getElementById("senha").value.trim();
+    const senha=document.getElementById("senha").value.trim();
 
-    if(senha === "250425"){
+    if(senha==="250425"){
 
-        document.getElementById("mensagem").innerHTML =
+        document.getElementById("mensagem").innerHTML=
         "🎉 Parabéns! Você acertou! 🎉";
 
         criarConfetes();
 
-        // BOTÃO PARA A PÁGINA 3 DO CANVA
         setTimeout(()=>{
-            document.getElementById("mensagem").innerHTML += `
+            document.getElementById("mensagem").innerHTML+=`
             <br><br>
-            <a href="https://canva.link/182ancuv7t2ri7d" target="_blank">
-                <button>Ir para a próxima fase ❤️</button>
-            </a>
+            <button onclick="irCanva()">
+                Ir para próxima fase ❤️
+            </button>
             `;
-        },1500);
+        },1200);
 
     } else {
-        document.getElementById("mensagem").innerHTML =
+        document.getElementById("mensagem").innerHTML=
         "❌ Senha incorreta!";
     }
+}
+
+// BOTÃO QUE REALMENTE ABRE O CANVA
+function irCanva(){
+    window.open("https://canva.link/182ancuv7t2ri7d", "_blank");
 }
 
 </script>
