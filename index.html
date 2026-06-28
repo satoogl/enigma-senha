@@ -18,7 +18,9 @@ body{
     text-align:center;
 }
 
-h1{ color:white; }
+h1{
+    color:white;
+}
 
 input{
     padding:12px;
@@ -26,6 +28,7 @@ input{
     border:none;
     border-radius:10px;
     text-align:center;
+    width:200px;
 }
 
 button{
@@ -35,6 +38,7 @@ button{
     border:none;
     border-radius:10px;
     cursor:pointer;
+    background:white;
 }
 
 #mensagem{
@@ -77,9 +81,11 @@ function criarConfetes(){
     for(let i=0;i<150;i++){
         const c=document.createElement("div");
         c.classList.add("confete");
+
         c.style.left=Math.random()*100+"vw";
         c.style.background=cores[Math.floor(Math.random()*cores.length)];
         c.style.animationDuration=(Math.random()*3+2)+"s";
+
         document.body.appendChild(c);
 
         setTimeout(()=>c.remove(),5000);
@@ -97,12 +103,15 @@ function verificar(){
 
         criarConfetes();
 
+        // BOTÃO QUE FUNCIONA NO CANVA
         setTimeout(()=>{
             document.getElementById("mensagem").innerHTML+=`
             <br><br>
-            <button onclick="irCanva()">
-                Ir para próxima fase ❤️
-            </button>
+            <a href="https://canva.link/182ancuv7t2ri7d" target="_blank">
+                <button>
+                    Ir para próxima fase ❤️
+                </button>
+            </a>
             `;
         },1200);
 
@@ -110,11 +119,6 @@ function verificar(){
         document.getElementById("mensagem").innerHTML=
         "❌ Senha incorreta!";
     }
-}
-
-// BOTÃO QUE REALMENTE ABRE O CANVA
-function irCanva(){
-    window.open("https://canva.link/182ancuv7t2ri7d", "_blank");
 }
 
 </script>
